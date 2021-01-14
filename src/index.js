@@ -16,8 +16,6 @@ for (const pokemonName in pokemon) {
   }
 }
 
-console.log(pokedex[0].types);
-
 // [...] react code
 function PokedexEntries({ pokedexEntries }) {
   return (
@@ -36,11 +34,11 @@ function PokemonTypes({ pokemonTypes }) {
         <h2 className="pokemon-types">
           Pokemon Types:
           {pokemonTypes[0]}
+          <img src={`/icons/${pokemonTypes[0]}.svg`} className={`pokemonImg ${pokemonTypes[0].toLowerCase()}`} />
           ,
           {pokemonTypes[1]}
+          <img src={`/icons/${pokemonTypes[1]}.svg`} className={`pokemonImg ${pokemonTypes[1].toLowerCase()}`} />
         </h2>
-        <img src={`/icons/${pokemonTypes[0]}.svg`} className="pokemonImg" />
-        <img src={`/icons/${pokemonTypes[1]}.svg`} className="pokemonImg" />
       </div>
     );
   }
@@ -50,8 +48,8 @@ function PokemonTypes({ pokemonTypes }) {
       <h2 className="pokemon-types">
         Pokemon Types:
         {pokemonTypes[0]}
+        <img src={`/icons/${pokemonTypes[0]}.svg`} className={`pokemonImg ${pokemonTypes[0].toLowerCase()}`} />
       </h2>
-      <img src={`/icons/${pokemonTypes[0]}.svg`} className="pokemonImg" />
     </div>
   );
 }
