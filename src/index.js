@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import pokemon from './pokemon.json';
+import styles from './styles.scss';
 
 const pokedex = [];
 
@@ -15,7 +16,7 @@ for (const pokemonName in pokemon) {
   }
 }
 
-console.log(pokedex[0].pokedex_entries);
+console.log(pokedex[0].types);
 
 // [...] react code
 function PokedexEntries({ pokedexEntries }) {
@@ -28,9 +29,35 @@ function PokedexEntries({ pokedexEntries }) {
     </div>
   );
 }
+function PokemonTypes({ pokemonTypes }) {
+  if (pokemonTypes[1] !== undefined) {
+    return (
+      <div>
+        <h2 className="pokemon-types">
+          Pokemon Types:
+          {pokemonTypes[0]}
+          ,
+          {pokemonTypes[1]}
+        </h2>
+        <img src={`/icons/${pokemonTypes[0]}.svg`} className="pokemonImg" />
+        <img src={`/icons/${pokemonTypes[1]}.svg`} className="pokemonImg" />
+      </div>
+    );
+  }
 
-function Pokemon({ name, pokedexEntries }) {
-  // console.log(pokedexEntries, 'hello');
+  return (
+    <div>
+      <h2 className="pokemon-types">
+        Pokemon Types:
+        {pokemonTypes[0]}
+      </h2>
+      <img src={`/icons/${pokemonTypes[0]}.svg`} className="pokemonImg" />
+    </div>
+  );
+}
+
+function Pokemon({ name, pokedexEntries, pokemonTypes }) {
+  // console.log(pokemonTypes, 'hello');
   return (
     <div>
       <h1 className="pokemon-name">
@@ -38,6 +65,7 @@ function Pokemon({ name, pokedexEntries }) {
         {name}
       </h1>
       <PokedexEntries pokedexEntries={pokedexEntries} />
+      <PokemonTypes pokemonTypes={pokemonTypes} />
     </div>
   );
 }
@@ -47,6 +75,7 @@ const pokemonArray = pokedex.map((pokemon) => (
     key={pokemon.national_id}
     name={pokemon.names.en}
     pokedexEntries={pokemon.pokedex_entries}
+    pokemonTypes={pokemon.types}
   />
 ));
 
